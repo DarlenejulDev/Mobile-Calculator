@@ -1,8 +1,9 @@
 
 import styled, { css , keyframes } from "@emotion/native";
 import React, { useState } from "react";
-import { Text, Button , Switch, TouchableOpacity, TextInput, Alert} from "react-native";
-import { Ionicons } from '@expo/vector-icons';
+import { Text, Image, Button , TouchableOpacity, TextInput} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import dog from "./assets/dog.jpg";
 
 
 const ViewContainer = styled.View({
@@ -17,7 +18,7 @@ const StyledButton = styled.TouchableOpacity ({
         backgroundColor: "#fff",
         padding: 16,
         borderRadius:32,
-        width: 20,
+        width: 40,
         height:50,
         // flexDirection: "column",
         // justifyContent: "center",
@@ -96,6 +97,11 @@ export default function App(){
             }}>
              {'\n'}
              Your total is: {total}
+            </Text>
+            <Image source={dog} style={{width:360, height:140 }}/>
+            <Text>
+            Btw: Here's a cute dog to look at while you stress over those numbers :)
+
             </Text>
 
         </ViewContainer>
