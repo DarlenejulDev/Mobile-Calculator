@@ -38,7 +38,6 @@ const ScrollViewItem = styled.View({
     flex: 1,
 });
 
-//Concat all the numbers 
 export default function App() {
     enum Actions {
         Divide,
@@ -47,12 +46,11 @@ export default function App() {
         Add,
     }
 
-    const [InputA, InputASetter] = useState<number>(0);
-    const [InputB, InputBSetter] = useState<number>(0);
-    const [DisplayInput, DisplayInputValueSetter] = useState<number>(0);
+    const [InputA, InputASetter] = useState<any>();
+    const [InputB, InputBSetter] = useState<any>();
+    const [DisplayInput, DisplayInputValueSetter] = useState<any>();
     const [isAction, setIsAction] = useState<boolean>(false);
     const [Action, setAction] = useState<Actions>(null);
-    // const [specialChar,specialCharSetter]= useState<string>();
 
 const TurnNegativeNumber = () =>{
     if(!isAction){
@@ -75,10 +73,9 @@ const Percent = () =>{
     }
 }
 
-//Try to parseInt so that it will take an interger and string.. there's just a mismatch
 const HandlePeriod = () =>{
     if(!isAction){
-        const IncludePeriodA= parseInt((InputA) + ".")
+        let IncludePeriodA= parseInt((InputA) + ".")
         InputASetter(IncludePeriodA);
     }else{
         const IncludePeriodB = parseInt((InputB) + ".")
@@ -91,10 +88,8 @@ const HandlePeriod = () =>{
         InputBSetter(0);
         DisplayInputValueSetter(0);
         setIsAction(false);
-        // specialCharSetter('');
     };
 
-    //TODO: Put simpleChar into DisplayInput and have it be aware of the placement
 
     const divide = () => {
         setAction(Actions.Divide);
@@ -150,14 +145,14 @@ const HandlePeriod = () =>{
     const completeInput = (digit: number) => {
         if (!isAction) {
             if (InputA != null) {
-                InputASetter((InputA  + digit));
+                InputASetter((InputA*10)  + digit);
             } else {
                 InputASetter(digit);
             }
             DisplayInputValueSetter(InputA);
         } else {
             if (InputB != null) {
-                InputBSetter((InputB * 10) + (digit));
+                InputBSetter((InputB * 10) + digit);
             } else {
                 InputBSetter(digit);
             }
@@ -174,7 +169,6 @@ const HandlePeriod = () =>{
                         fontSize: 116,
                     }}>
                         {DisplayInput}
-                        {/* {specialChar} */}
 
                     </Text>
                 </NumberDisplay>
